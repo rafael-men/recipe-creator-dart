@@ -11,25 +11,34 @@ class SidebarMenu extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(color: Color(0xFF8B0000)),
-            child: Text(
-              'Menu',
-              style: TextStyle(color: Colors.white, fontSize: 24),
+          DrawerHeader(
+            decoration: const BoxDecoration(color: Color(0xFF8B0000)),
+            child: Image.asset(
+              'assets/LOGO.png',
+              fit: BoxFit.contain,
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text('Receitas Tradicionais'),
-            onTap: () => onSelectPage(0),
-          ),
+  leading: const Icon(Icons.home),
+  title: const Text('Receitas Tradicionais'),
+  onTap: () {
+    Navigator.of(context).pop();
+    onSelectPage(0);
+  },
+),
+
           ListTile(
-            leading: const Icon(Icons.rice_bowl),
-            title: const Text('Receitas Orientais'),
-            onTap: () => onSelectPage(1),
-          ),
+  leading: const Icon(Icons.rice_bowl),
+  title: const Text('Receitas Orientais'),
+  onTap: () {
+    Navigator.of(context).pop(); 
+    onSelectPage(1);            
+  },
+),
+
         ],
       ),
     );
   }
 }
+

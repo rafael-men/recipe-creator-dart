@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_recipe_book/pages/create_recipe_page.dart';
 import 'package:my_recipe_book/pages/homepage.dart';
 import 'pages/homepage.dart';
-// import 'pages/oriental_recipes_page.dart';
+import 'pages/oriental_recipes.dart';
 import 'theme.dart';
 import 'widgets/sidebar_menu.dart';
 
@@ -17,7 +18,7 @@ class _RecipeAppState extends State<RecipeApp> {
 
   final List<Widget> _pages = const [
     HomePage(),
-    //OrientalRecipesPage(),
+    OrientalRecipesPage(),
   ];
 
   final List<String> _titles = [
@@ -26,11 +27,11 @@ class _RecipeAppState extends State<RecipeApp> {
   ];
 
   void _onSelectPage(int index) {
-    setState(() {
-      _selectedIndex = index;
-      Navigator.of(context).pop();
-    });
-  }
+  setState(() {
+    _selectedIndex = index;
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,9 @@ class _RecipeAppState extends State<RecipeApp> {
       title: 'Receitas Culinárias',
       debugShowCheckedModeBanner: false,
       theme: appTheme,
+       routes: {
+         '/add': (context) => const AddRecipePage(),
+      },
       home: Scaffold(
         appBar: AppBar(
           title: Text(_titles[_selectedIndex]),

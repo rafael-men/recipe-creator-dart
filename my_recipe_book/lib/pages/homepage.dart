@@ -24,13 +24,24 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(
               width: double.infinity,
-              height: 140,
+              height: 200,
               child: Image.asset(
-                'assets/images/tradicional_banner.png',
+                'assets/mare.jpg',
                 fit: BoxFit.cover,
               ),
+              
             ),
 
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
+
+            const Text(
+            'Encontre as receitas pela Dificuldade ;)',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+           ),
          
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
