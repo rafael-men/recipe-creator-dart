@@ -125,7 +125,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
                   'Itália', 'França', 'Espanha', 'Portugal', 'Alemanha', 'Grécia', 'Suíça', 'Reino Unido',
                   'Irlanda', 'Holanda', 'Bélgica', 'Suécia', 'Noruega', 'Dinamarca', 'Áustria', 'Hungria',
                   'Polônia', 'República Tcheca', 'Croácia',
-                  'Cajun',
+                  'Cajun', 'Marrocos', 'Síria', 'Armênia',
                   ...orientalCountries,
                 ]).map((country) {
                   return DropdownMenuItem(

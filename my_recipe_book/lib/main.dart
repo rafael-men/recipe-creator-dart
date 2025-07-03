@@ -1,5 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_recipe_book/services/auth_service.dart';
+import 'package:provider/provider.dart';
 import 'models/recipe.dart';
 // import 'models/user.dart';
 import 'services/hive_service.dart';
@@ -7,13 +10,26 @@ import 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp(
+     options: const FirebaseOptions(
+      apiKey: "AIzaSyAznKl7t631Kh1mwimLp3LqvpQJSx2r2YI",
+      authDomain: "recipe-app-16f66.firebaseapp.com",
+      projectId: "recipe-app-16f66",
+      storageBucket: "recipe-app-16f66.firebasestorage.app",
+      messagingSenderId: "460889163066",
+      appId: "1:460889163066:web:2b83b08efbf82993083c03",
+      measurementId: "G-TTXHCGGRPQ",
+    ),
+  );
   await HiveService.init();
-
-
   await Hive.openBox<Recipe>('recipes');
 
-  runApp(const AppLoader());
+   runApp(
+    ChangeNotifierProvider(
+      create: (_) => AuthService(),
+      child: const AppLoader(),
+    ),
+  );
 }
 
 
@@ -25,7 +41,6 @@ class AppLoader extends StatelessWidget {
     return FutureBuilder(
       future: Future.wait([
         Hive.openBox<Recipe>('recipes'),
-        // Hive.openBox<AppUser>('users'),
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {

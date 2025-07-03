@@ -75,7 +75,6 @@ class _AddRecipePageState extends State<AddRecipePage> {
           key: _formKey,
           child: Column(
             children: [
-              // Botão de imagem
               GestureDetector(
                 onTap: pickImage,
                 child: imageFile == null
@@ -132,6 +131,9 @@ class _AddRecipePageState extends State<AddRecipePage> {
                   'Polônia',
                   'República Tcheca',
                   'Croácia',
+                  'Marrocos',
+                  'Síria', 
+                  'Armênia',
                   ...orientalCountries,
                 ]).map((country) {
                   return DropdownMenuItem(

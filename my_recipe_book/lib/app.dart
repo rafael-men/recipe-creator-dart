@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_recipe_book/pages/create_recipe_page.dart';
 import 'package:my_recipe_book/pages/homepage.dart';
-import 'pages/homepage.dart';
+import 'package:my_recipe_book/pages/login_page.dart';
+import 'package:my_recipe_book/pages/signup_page.dart';
 import 'pages/oriental_recipes.dart';
 import 'theme.dart';
 import 'widgets/sidebar_menu.dart';
@@ -33,22 +35,44 @@ class _RecipeAppState extends State<RecipeApp> {
 }
 
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Receitas Culinárias',
-      debugShowCheckedModeBanner: false,
-      theme: appTheme,
-       routes: {
-         '/add': (context) => const AddRecipePage(),
+ @override
+Widget build(BuildContext context) {
+  return MaterialApp(
+    title: 'Receitas Culinárias',
+    debugShowCheckedModeBanner: false,
+    theme: appTheme,
+    // initialRoute: '/login',
+
+    routes: {
+      '/home': (context) => const HomePage(),
+      '/add': (context) => const AddRecipePage(),
+      '/login': (context) => const LoginPage(),
+      '/signup': (context) => const SignUpPage(),
+    },
+
+    home: StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        if (snapshot.hasData) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(_titles[_selectedIndex]),
+            ),
+            drawer: SidebarMenu(onSelectPage: _onSelectPage),
+            body: _pages[_selectedIndex],
+          );
+        }
+
+        return const LoginPage();
       },
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(_titles[_selectedIndex]),
-        ),
-        drawer: SidebarMenu(onSelectPage: _onSelectPage),
-        body: _pages[_selectedIndex],
-      ),
-    );
-  }
+    ),
+  );
+}
+
 }

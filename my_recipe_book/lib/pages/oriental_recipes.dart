@@ -21,7 +21,7 @@ class _OrientalRecipesPageState extends State<OrientalRecipesPage> {
         children: [
           Column(
             children: [
-          
+           
               SizedBox(
                 width: double.infinity,
                 height: 200,
@@ -44,7 +44,7 @@ class _OrientalRecipesPageState extends State<OrientalRecipesPage> {
 
               const SizedBox(height: 8),
 
-         
+            
               SizedBox(
                 height: 50,
                 child: ListView.builder(
@@ -89,25 +89,39 @@ class _OrientalRecipesPageState extends State<OrientalRecipesPage> {
 
               const SizedBox(height: 12),
 
-              // Lista de receitas orientais
+    
               Expanded(
                 child: ValueListenableBuilder<Box<Recipe>>(
                   valueListenable: Hive.box<Recipe>('recipes').listenable(),
                   builder: (context, box, _) {
-                    final orientalRecipes = box.values.where((r) => r.recipeType == 'oriental');
+                    final orientalRecipes =
+                        box.values.where((r) => r.recipeType == 'oriental');
 
                     final filteredRecipes = selectedCountry == null
                         ? orientalRecipes.toList()
-                        : orientalRecipes.where((r) => r.originCountry == selectedCountry).toList();
+                        : orientalRecipes
+                            .where((r) => r.originCountry == selectedCountry)
+                            .toList();
 
                     if (filteredRecipes.isEmpty) {
-                      return const Center(child: Text('Nenhuma receita oriental encontrada'));
+                      return const Center(
+                          child: Text('Nenhuma receita oriental encontrada'));
                     }
 
                     return ListView.builder(
                       itemCount: filteredRecipes.length,
                       itemBuilder: (context, index) {
-                        return RecipeCard(recipe: filteredRecipes[index]);
+                        final recipe = filteredRecipes[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              '/detail',
+                              arguments: recipe,
+                            );
+                          },
+                          child: RecipeCard(recipe: recipe),
+                        );
                       },
                     );
                   },
@@ -116,6 +130,7 @@ class _OrientalRecipesPageState extends State<OrientalRecipesPage> {
             ],
           ),
 
+     
           Positioned(
             bottom: 20,
             right: 20,
