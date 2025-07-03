@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_recipe_book/models/shopping_lists.dart';
 import 'package:my_recipe_book/services/auth_service.dart';
 import 'package:provider/provider.dart';
 import 'models/recipe.dart';
-// import 'models/user.dart';
 import 'services/hive_service.dart';
 import 'app.dart';
 
@@ -23,6 +23,8 @@ void main() async {
   );
   await HiveService.init();
   await Hive.openBox<Recipe>('recipes');
+  await Hive.openBox<ShoppingList>('shoppingLists');
+
 
    runApp(
     ChangeNotifierProvider(

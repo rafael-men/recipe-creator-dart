@@ -74,6 +74,16 @@ class SidebarMenu extends StatelessWidget {
               Navigator.of(context).pop();
               onSelectPage(1);
             },
+          ),ListTile(
+            leading: const Icon(Icons.shopping_cart),
+            title: const Text(
+              'Lista de Compras',
+              style: TextStyle(fontFamily: 'RobotoSlab', fontSize: 20),
+            ),
+            onTap: () {
+              Navigator.of(context).pop();
+              onSelectPage(2);
+            },
           ),
           const Divider(),
           ListTile(

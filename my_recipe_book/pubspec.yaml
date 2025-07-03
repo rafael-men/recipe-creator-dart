@@ -33,8 +33,13 @@ dev_dependencies:
   hive_generator: ^2.0.1
   build_runner: ^2.4.8
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
 
-
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/log.png"
+  
 flutter:
 
   uses-material-design: true

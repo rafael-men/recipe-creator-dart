@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_recipe_book/pages/create_recipe_page.dart';
 import 'package:my_recipe_book/pages/homepage.dart';
 import 'package:my_recipe_book/pages/login_page.dart';
+import 'package:my_recipe_book/pages/shopping_list_page.dart';
 import 'package:my_recipe_book/pages/signup_page.dart';
 import 'pages/oriental_recipes.dart';
 import 'theme.dart';
@@ -21,11 +22,13 @@ class _RecipeAppState extends State<RecipeApp> {
   final List<Widget> _pages = const [
     HomePage(),
     OrientalRecipesPage(),
+    ShoppingListsPage(),
   ];
 
   final List<String> _titles = [
     'Receitas Tradicionais',
     'Receitas Orientais',
+    'Lista de Compras',
   ];
 
   void _onSelectPage(int index) {
@@ -38,10 +41,10 @@ class _RecipeAppState extends State<RecipeApp> {
  @override
 Widget build(BuildContext context) {
   return MaterialApp(
-    title: 'Receitas Culinárias',
+    title: 'Meu App de Receitas',
     debugShowCheckedModeBanner: false,
     theme: appTheme,
-    // initialRoute: '/login',
+
 
     routes: {
       '/home': (context) => const HomePage(),
