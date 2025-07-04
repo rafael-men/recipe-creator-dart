@@ -35,6 +35,18 @@ flutter run
 
 - A aplicação iniciará numa guia do chrome.
 
+## 📥 Instalação em Android para uso
+
+- Dê o comando abaixo para criar o apk:
+  
+```bash
+flutter build apk --release
+```
+- O Apk estará abaixo, após isso é só instalar em seu dispositivo móvel android.
+- O armazenamento dos dados é local para facilitar uso offline, portanto desinstalando o aplicativo consistirá na perda dos dados.
+  
+<seu_projeto>/build/app/outputs/flutter-apk/app-release.apk
+
 ## 🛠 Tecnologias Usadas
 - Flutter – Interface do app
 - Firebase Auth – Login/Cadastro
